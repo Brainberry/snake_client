@@ -1,0 +1,16 @@
+<%= form_for @user_session, :as => :user_session, :url => session_path do |f| %>
+  <%= f.label :login, 'Email' %><br />
+  <%= f.text_field :login %><br />
+  <br />
+  <%= f.label :password %><br />
+  <%= f.password_field :password, :autocomplete => 'off' %><br />
+  <br />
+  <%= f.label :remember_me %><br />
+  <%= f.check_box :remember_me %><br />
+  
+  <%= link_to t('password.new'), new_password_path %><br />
+  
+  <%= f.submit "Login" %>
+<% end %>
+
+<%#=raw RPXNow.popup_code('Login here...', 'snake', rpx_token_session_url(:only_path => false), {:language=>'en'})%>

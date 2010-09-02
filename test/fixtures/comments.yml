@@ -1,0 +1,33 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id               :integer(4)      not null, primary key
+#  user_name        :string(50)
+#  user_email       :string(50)
+#  content          :text            default(""), not null
+#  content_html     :text
+#  user_id          :integer(4)
+#  commentable_id   :integer(4)      default(0), not null
+#  commentable_type :string(15)      default(""), not null
+#  is_follow        :boolean(1)      default(FALSE)
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+# Indexes
+#
+#  index_comments_on_user_id                              (user_id)
+#  index_comments_on_commentable_type_and_commentable_id  (commentable_type,commentable_id)
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+#  column: value

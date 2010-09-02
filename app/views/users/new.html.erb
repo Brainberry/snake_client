@@ -1,0 +1,16 @@
+<div class="stroke-block">
+    <div class="t p"><div class="cn l"></div><div class="center"></div><div class="cn r"></div></div>
+    <div class="cg-cont">
+        <div class="form registration">
+			<h1><%= t('label.signup') %></h1>
+			<% @user.password = @user.password_confirmation = nil %>
+
+			<%= form_for @user, :as => :user, :url => users_path do |f| -%>
+			  <%= render :partial => "users/form", :object => f %>
+
+			  <div style="padding-top: 30px;"><%= f.submit t('button.signup') %></div>
+			<% end -%>
+		</div>
+    </div>
+    <div class="b p"><div class="cn l"></div><div class="center"></div><div class="cn r"></div></div>
+</div>

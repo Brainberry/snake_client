@@ -1,0 +1,16 @@
+<div class="stroke-block">
+  <div class="t p"><div class="cn l"></div><div class="center"></div><div class="cn r"></div></div>
+  <div class="cg-cont">
+    <div class="form passwords">
+		  <h1><%= t('passwords.title') %></h1>
+
+		  <%= form_for @user, :as => :user, :url => passwords_path do |f| -%>
+		    <%= f.label :email %>
+		    <%= f.text_field :email %>
+
+		    <div style="padding-top: 30px;"><%= f.submit t('button.send') %></div>
+		  <% end -%>
+	  </div>
+  </div>
+  <div class="b p"><div class="cn l"></div><div class="center"></div><div class="cn r"></div></div>
+</div>

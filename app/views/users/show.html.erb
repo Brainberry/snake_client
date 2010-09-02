@@ -1,0 +1,92 @@
+<div class="corn-grad user-view">
+  <%= render :partial => "users/tree", :locals => {:tree_title => t('user.room')} %>
+    
+  <div class="cg-cont">
+    <%= render :partial => "users/info_panel" %>
+    <table border="0" cellspacing="0" cellpadding="0" class="details">
+      <tbody>
+        <tr>
+          <td><%= t('user.name') %>:</td>
+          <td><strong><%= @user.name %></strong></td>
+        </tr>
+        <tr>
+          <td><%= t('user.email') %>:</td>
+          <td><strong><%=raw encode_email @user.email, :encode => "javascript" %></strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <table border="0" cellspacing="0" cellpadding="0" class="details">
+      <tbody><tr>
+          <td><%= t('user.phone_number') %>:</td>
+          <td><strong><%= @user.phone %></strong></td>
+        </tr>
+        <tr>
+          <td><%= t('user.phone_model') %>:</td>
+          <td><strong><%= @user.phone_title %></strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="b p"><div class="cn l"></div><div class="center"></div><div class="cn r"></div></div>
+</div>
+
+<%= render :partial => "users/menu" %>
+
+<% unless @songs.empty? %>
+<div style="padding-bottom: 35px;">
+  <h2 style="float: left;"><%= t('user.ilike') %></h2>
+  
+  <%= render :partial => "recommendations/tabs" %>
+  
+  <%= render :partial => "songs/table", :locals => { :songs => @songs } %>    
+  
+  <div class="all-singl">
+    <%= link_to content_tag(:span, t('user.all_recommendations')), user_recommendations_path(@user)  %>
+  </div>
+</div>
+<% end %>
+
+<% unless @footmarks.empty? %>
+<div style="padding-bottom: 35px;">
+	<h2 style="float: left;"><%= t('user.statisticts') %></h2>
+  
+  <%= render :partial => "statisticts/tabs" %>
+  
+  <table border="0" cellspacing="0" cellpadding="0" class="music-data">
+  <thead>
+    <tr>
+      <td width="60" class="first">&nbsp;</td>
+      <td width="250"><%= t('song.name') %></td>
+      <td width="250" class="last"><%= t('song.artist') %></td>
+      <td width="170" class="last"><%= t('label.date') %></td>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render :partial => "statisticts/footmark", :collection => @footmarks %>
+  </tbody>
+  </table>
+
+  <div class="all-singl"><%= link_to content_tag(:span, t('user.all_statisticts')), user_statisticts_path(@user) %></div>
+</div>
+<% end %>
+
+<% unless @orders.empty?  %>
+<div style="padding-bottom: 35px;">
+	<h2><%= t('user.orders') %></h2>
+  <table border="0" cellspacing="0" cellpadding="0" class="music-data">
+  <thead>
+    <tr>
+      <td width="60" class="first">&nbsp;</td>
+      <td width="250"><%= t('song.name') %></td>
+      <td width="250" class="last"><%= t('order.kind') %></td>
+      <td width="170" class="last"><%= t('order.created_at') %></td>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render :partial => "orders/order", :collection => @orders %>
+  </tbody>
+  </table>
+  
+  <div class="all-singl"><%= link_to content_tag(:span, t('user.all_orders')), user_orders_path(@user) %></div>
+</div>
+<% end %>

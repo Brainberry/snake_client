@@ -1,0 +1,9 @@
+#min-frame {
+	width:expression((document.documentElement.clientWidth||document.body.clientWidth)<990?'990px':'100%')
+}
+.in-air a.close {
+	right: 30px;
+} 
+.application, .button-panel, .knots .block .content, .tree, .new-knot .block ul li, ul.files li, .coments .block, .users, .users .block {
+	height: 1%;
+}

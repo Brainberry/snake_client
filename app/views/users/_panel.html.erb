@@ -1,0 +1,7 @@
+<% if user_signed_in? -%>
+	<ul>
+		<li><%= link_to current_user.name, edit_user_registration_path, :class=>"user" %></li>
+		<li><%= link_to t('label.exit'), destroy_user_session_path, :class=>"exit" %></li>
+		<li><%= link_to t('label.help'), '#', :class => 'help' %></li>
+	</ul>
+<% end -%>

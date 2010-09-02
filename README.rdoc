@@ -1,0 +1,37 @@
+= Snake Client
+
+== Gems
+  bundle install
+  bundle install --without development test
+
+== Rake tasks
+=== Database:
+
+  * rake db:bootstrap:load – Load initial database fixtures (in db/bootstrap/*.yml) into the current environment’s database. Load specific fixtures using FIXTURES=x,y
+  * rake db:indexes:missing – Prints a list of unindexed foreign keys so you can index them.
+  * rake db:shell – Launches the database shell using the values defined in config/database.yml.
+  * rake db:validate_models – Run model validations on all model records in database.
+
+=== Subversion
+
+  * rake svn:add – Adds all files with an svn status flag of ‘?’
+  * rake svn:delete – Deletes all files with an svn status flag of ‘!’
+  * rake svn:log – Writes the log file to doc/svn_log.txt
+  * rake svn:update\svn\ignore – Updates svn:ignore from .svnignore
+
+=== AssetPackager
+  rake asset:packager:build_all
+
+== Testing
+
+Avariable params: [:requests, :models, :controllers, :views, :helpers, :mailers, :lib, :routing]
+  
+  RAILS_ENV=test rake spec
+  RAILS_ENV=test rake spec:controllers
+
+=== Automatic testing
+
+  bundle exec spork
+  bundle exec autotest
+  
+== Brainberry 2010

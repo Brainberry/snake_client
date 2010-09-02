@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<%= tag(:meta, :content=>(yield(:keywords) || page_keywords), :name=>"keywords") %>
+	<%= tag(:meta, :content=>(yield(:description) || page_description), :name=>"description") %>
+	<%= csrf_meta_tag %>
+	<title><%= yield(:title) || page_title %></title>
+	<%= stylesheet_link_tag 'main.css', :media=> 'screen' %>
+  <!--[if lte IE 6]><link href="/stylesheets/ie.css" type="text/css" rel="stylesheet" /><![endif]-->
+	
+	<%=raw javascript_include_tag("jquery-1.4.2.min.js", "application.js") %>
+	<%= formtastic_stylesheet_link_tag %>
+	
+	<%#=raw stylesheet_link_merged :base, :media=> 'screen' %>
+	<%#=raw javascript_include_merged :base %>
+	
+	<%= auto_discovery_link_tag(:rss, @feed_path) if @feed_path %>
+	<%= yield(:head) %>
+</head>
+<body>
+  <div id="min-frame">
+    <div id="head">
+      <h1><img src="/images/brainberry.gif" alt="Brainberry" /></h1>
+			<%= render :partial=>"users/panel" %>
+    </div>
+    <div class="main-content">
+      <%= render :partial=>"shared/menu" %>
+      
+      <div class="app-content">
+        
+        <div class="shadow-block right">
+          <div class="b"><div class="r"><div class="l"><div class="t"><div class="crn-p top"><div class="crn left"></div><div class="crn right"></div></div>
+          <div class="shadow-cont">
+            <%= render :partial => "shared/notice" if flash %>
+       			<%= yield %>
+          </div>
+          <div class="crn-p bot"><div class="crn left"></div><div class="crn right"></div></div></div></div></div></div>
+        </div>
+        <div class="shadow-block left">
+          <div class="b"><div class="r"><div class="l"><div class="t"><div class="crn-p top"><div class="crn left"></div><div class="crn right"></div></div>
+          <div class="shadow-cont">
+       			<%= yield(:left) %>
+          </div>
+          <div class="crn-p bot"><div class="crn left"></div><div class="crn right"></div></div></div></div></div></div>
+        </div>
+      </div>
+      <div style="text-align: right; padding: 5px 10px;"><a href="http://brainberry.ua" target="_blank"><img src="/images/created_by_brainberry.gif" alt="created by brainberry"  /></a></div>
+    </div>
+  </div>
+  <%= yield(:footer) %>
+</body>
+</html>

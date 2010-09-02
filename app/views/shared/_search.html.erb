@@ -1,0 +1,10 @@
+<div class="search">
+	<% form_tag(path, :method=>:get) do %>
+		<table cellspacing="0" cellpadding="0" border="0">
+      <tbody><tr>
+        <td><%= text_field_tag "q", @search_text, :value=>(@search_text.blank? ? 'Поиск' : @search_text), :class=>'text', :onclick=>"if(this.value=='Поиск'){this.value='';}" %></td>
+        <td><input type="image" alt="Найти" src="/images/button_search.gif"/></td>
+      </tr>
+    </tbody></table>
+	<% end %>
+</div>

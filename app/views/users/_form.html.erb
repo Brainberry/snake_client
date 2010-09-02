@@ -1,0 +1,13 @@
+<%= form.error_messages %>
+
+<%= form.label :name %>
+<%= form.text_field :name %>
+
+<%= form.label :email %>
+<%= form.text_field :email %>
+
+<%= form.label :password %>
+<%= form.password_field :password, :autocomplete => 'off' %>
+
+<%= form.label :password_confirmation %>
+<%= form.password_field :password_confirmation, :autocomplete => 'off' %>
