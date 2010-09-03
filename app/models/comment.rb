@@ -21,8 +21,6 @@
 #
 
 class Comment < ActiveRecord::Base
-  using_access_control
-  
   attr_protected :user_id
   
   belongs_to :commentable, :polymorphic => true, :counter_cache=>:comments_count

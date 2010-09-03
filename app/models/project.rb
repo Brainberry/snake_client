@@ -18,8 +18,6 @@
 #
 
 class Project < ActiveRecord::Base
-  using_access_control
-  
   belongs_to :user
   has_many :issues, :dependent => :delete_all
   has_many :members, :dependent => :delete_all
@@ -39,8 +37,8 @@ class Project < ActiveRecord::Base
   
   SECRET_KEY = "4b!d77$c3afa*"
   
-  named_scope :recently_issues, :include => [:issues], :conditions => ["issues.state = ?", Issue.state(:new)], 
-                                :order => "issues.updated_at DESC"
+  #scope :recently_issues, :include => [:issues], :conditions => ["issues.state = ?", Issue.state(:new)], 
+  #                              :order => "issues.updated_at DESC"
   
   def last_error_updated_at
     @last_error_updated_at ||= self.errors.map(&:updated_at).max

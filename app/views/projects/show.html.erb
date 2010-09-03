@@ -1,0 +1,11 @@
+<div class='application'>
+	<div class="tree"><%= link_to "Projects", projects_path %> <%= @project.title %> Issues</div>
+		<div class="block my-application">
+			<h1><%= @project.title %></h1>
+			
+		</div>
+</div>
+
+<% content_for :left do %>
+  <%= render :partial => "projects/info", :locals => { :project => @project } %>
+<% end %>

@@ -53,6 +53,8 @@ class User < ActiveRecord::Base
 	has_many :comments, :dependent => :nullify
 	has_gravatar :size => 50
 	
+	before_create :make_default_role
+	
 	scope :activated, :conditions=>"users.activated_at IS NOT NULL", :order=>"login"
 	scope :active, :conditions=>{:state => 'active'}
 	
@@ -81,6 +83,10 @@ class User < ActiveRecord::Base
   end
   
   protected
+    
+    def make_default_role
+      self.role_type ||= RoleType.default
+    end
     
     def make_login
 	    return if self.email.blank?

@@ -34,14 +34,14 @@ class Issue < ActiveRecord::Base
   belongs_to :member
   has_many :comments, :as => :commentable, :dependent => :delete_all
   
-  acts_as_enum :state, [:new, :incomplete, :resolved, :verified]
-  acts_as_enum :level, [:default, :warn, :fatal]
+  #acts_as_enum :state, [:new, :incomplete, :resolved, :verified]
+  #acts_as_enum :level, [:default, :warn, :fatal]
   
   before_create :make_public_key
   
   default_scope :order => "updated_at DESC"
   scope :by_state, lambda { |st| { :conditions => ["state = ?", self.state(st.to_sym)] } }
-  scope :recently, :conditions => ["state = ?", self.state(:new)]
+  #scope :recently, :conditions => ["state = ?", self.state(:new)]
   
   def title
     @title ||= "A #{namespace} occurred in #{controller_name}##{action_name}"

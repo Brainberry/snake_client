@@ -1,7 +1,5 @@
 <ul id='menu' class="menu">
-	<li class="b"><%=raw link_to_unless ['dashboard'].include?(params[:controller]), "<span><span><span>Dashboard</span></span></span>", home_path %></li>
-	<li class="a"><%=raw link_to_unless ['projects'].include?(params[:controller]), "<span><span><span>Projects</span></span></span>", projects_path %></li>
-	<li class="c"><%=raw link_to_unless ['members'].include?(params[:controller]), "<span><span><span>Members</span></span></span>", members_path %></li>
-	<li class="c"><%=raw link_to_unless ['users'].include?(params[:controller]), "<span><span><span>Users</span></span></span>", users_path %></li>
-	<li class="d"><%=raw link_to_unless ['companies'].include?(params[:controller]), "<span><span><span>Company</span></span></span>", "company_path" %></li>
+	<li class="b"><%= link_to_unless ['dashboard'].include?(params[:controller]), "<span><span><span>#{t('menu.dashboard')}</span></span></span>".html_safe, user_root_path %></li>
+	<li class="a"><%= link_to_unless ['projects'].include?(params[:controller]), "<span><span><span>#{t('menu.projects')}</span></span></span>".html_safe, projects_path %></li>
+	<li class="c"><%= link_to_unless ['users'].include?(params[:controller]), "<span><span><span>#{t('menu.users')}</span></span></span>".html_safe, users_path %></li>
 </ul>

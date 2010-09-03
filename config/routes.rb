@@ -5,11 +5,15 @@ SnakeClient::Application.routes.draw do
   end
 
   root :to => "welcome#index"
+  
+  resources :users
 
   resources :projects do
     resources :issues
     resources :members
   end
+  
+  match '/dashboard' => 'dashboard#index', :as => 'user_root'
   
   resources :comments
 end

@@ -1,0 +1,10 @@
+<div class="tree"><%= link_to "Projects", projects_path %> <%= link_to @project.title, project_path(@project) %> Edit</div>
+
+<div class="new-knot">
+  <h2>Edit project</h2>
+	 
+  <% semantic_form_for @project do |form| -%>
+    <%= render :partial => "form", :object => form %>
+    <%= form.buttons :commit %>
+  <% end %>
+</div>

@@ -1,0 +1,7 @@
+<div class='project'>
+	<span><%= link_to project.title, project_issues_path(project) %></span>
+	<div class='buttons'>
+		<%= link_to t('label.edit'), edit_project_path(project), :class=>"edit" %>
+		<%= link_to t('label.delete'), project_path(project), :method=>:delete, :confirm=>t('label.confirm_delete'), :html=>{:class=>"delete"} %>
+	</div>
+</div>

@@ -5,4 +5,15 @@ en:
   label:
     help: "Help"
     signup: "Sign up"
-    login: "Exit"
+    login: "Sign in"
+    close: "Close"
+    exit: "Exit"
+  
+  menu:
+    dashboard: "Dashboard"
+    projects: "Projects"
+    users: "Users"
+  
+  
+  projects:
+    new: "Create new project"

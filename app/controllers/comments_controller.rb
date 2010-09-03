@@ -1,2 +1,2 @@
-class CommentsController < ApplicationController
+class CommentsController < BaseController
 end

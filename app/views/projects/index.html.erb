@@ -1,0 +1,5 @@
+<% if can? :create, Project %>
+  <%= link_to t('projects.new'), new_project_path %>
+<% end %>
+
+<%= render :partial => "projects/project", :collection => @projects %>
