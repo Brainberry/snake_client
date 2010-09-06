@@ -12,4 +12,8 @@ module ApplicationHelper
     
     return ''
   end
+  
+  def render_page_title
+    'Snake'
+  end
 end

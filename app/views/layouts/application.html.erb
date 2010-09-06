@@ -5,17 +5,13 @@
 	<%= tag(:meta, :content=>(yield(:keywords) || page_keywords), :name=>"keywords") %>
 	<%= tag(:meta, :content=>(yield(:description) || page_description), :name=>"description") %>
 	<%= csrf_meta_tag %>
-	<title><%= yield(:title) || page_title %></title>
+	<title><%= render_page_title %></title>
 	<%= stylesheet_link_tag 'main.css', :media=> 'screen' %>
   <!--[if lte IE 6]><link href="/stylesheets/ie.css" type="text/css" rel="stylesheet" /><![endif]-->
 	
-	<%=raw javascript_include_tag("jquery-1.4.2.min.js", "application.js") %>
+	<%= javascript_include_tag("jquery-1.4.2.min", "application") %>
 	<%= formtastic_stylesheet_link_tag %>
 	
-	<%#=raw stylesheet_link_merged :base, :media=> 'screen' %>
-	<%#=raw javascript_include_merged :base %>
-	
-	<%= auto_discovery_link_tag(:rss, @feed_path) if @feed_path %>
 	<%= yield(:head) %>
 </head>
 <body>

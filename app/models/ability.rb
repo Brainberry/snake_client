@@ -5,7 +5,7 @@ class Ability
     case user.role_type
       when RoleType.admin then
         can :manage, :all
-      when RoleType.manager then
+      when RoleType.author then
         can :read, :all
       when RoleType.default then
         can :manage, Project

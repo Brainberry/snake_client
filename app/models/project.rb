@@ -49,7 +49,7 @@ class Project < ActiveRecord::Base
   
     def make_public_key
       #self.public_key = Digest::SHA1.hexdigest("--#{Time.now.to_s}-#{self.id}-Brainberry--")
-      update_attribute(:public_key, Crypto.encrypt(secret_key))
+      update_attribute(:public_key, Snake::Crypto.encrypt(secret_key))
     end
     
     def secret_key
@@ -59,8 +59,7 @@ class Project < ActiveRecord::Base
     def make_member
       self.members.create do |m|
         m.user = self.user
-        m.role = :author
-        m.state = 'active'
+        m.role_type = RoleType.author
       end
     end
 end
