@@ -14,6 +14,11 @@ en:
     projects: "Projects"
     users: "Users"
   
-  
   projects:
+    title: "Projects"
     new: "Create new project"
+  
+  issues:
+    message: "Message"
+    date: "Date"
+    copies: "Copies"

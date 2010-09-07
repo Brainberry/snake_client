@@ -1,0 +1,17 @@
+<div style="padding-top:10px;">
+  <h2><%= link_to application.title, project_issues_path(application) %></h2>
+</div>
+
+<table cellspacing="0" cellpadding="0" border="0">
+<thead>
+  <tr>
+    <td width="70%"><%= t('issues.message') %></td>
+    <td width="20%"><%= t('issues.date') %></td>
+    <td width="5%"><%= t('issues.copies') %></td>
+    <td width="5%"></td>
+  </tr>
+</thead>
+<tbody>
+  <%= render :partial => "issues/issue", :collection => application.issues.with_state(:pending).limit(5), :as => :issue %>
+</tbody>
+</table>

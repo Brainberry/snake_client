@@ -1,0 +1,9 @@
+<%= content_tag(:tr, :id => dom_id(issue)) do %>
+	<td>
+	  <%= issue.namespace %><br/>
+	  <%= link_to issue.message, project_issue_path(issue.project, issue) %>
+	</td>
+	<td><%= time_tag issue.updated_at %></td>
+	<td><%= issue.copies_count %></td>
+	<td><%= link_to issue.comments_count, project_issue_path(issue.project, issue, :anchor => "comments"), :class => "coment" %></td>
+<% end %>

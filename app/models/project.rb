@@ -33,9 +33,7 @@ class Project < ActiveRecord::Base
   
   default_value_for :public_key, 'demo'
   
-  after_create :make_public_key, :make_member
-  
-  SECRET_KEY = "4b!d77$c3afa*"
+  after_create :generate_public_key, :create_member
   
   #scope :recently_issues, :include => [:issues], :conditions => ["issues.state = ?", Issue.state(:new)], 
   #                              :order => "issues.updated_at DESC"
@@ -45,18 +43,13 @@ class Project < ActiveRecord::Base
     @last_error_updated_at || 1.year.ago
   end
   
-  private
+  protected
   
-    def make_public_key
-      #self.public_key = Digest::SHA1.hexdigest("--#{Time.now.to_s}-#{self.id}-Brainberry--")
-      update_attribute(:public_key, Snake::Crypto.encrypt(secret_key))
+    def generate_public_key
+      update_attribute(:public_key, ActiveSupport::SecureRandom.hex(12))
     end
     
-    def secret_key
-      ['brainberry', self.id, SECRET_KEY].join(':')
-    end
-    
-    def make_member
+    def create_member
       self.members.create do |m|
         m.user = self.user
         m.role_type = RoleType.author

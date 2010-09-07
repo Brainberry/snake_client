@@ -1,0 +1,6 @@
+<h3><%= t('projects.title') %></h3>
+<ul class='projects'>
+  <% current_user.applications.each do |app| %>
+    <li><%= link_to app.title, project_path(app) %></li>
+  <% end %>
+</ul>

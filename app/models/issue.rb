@@ -34,14 +34,26 @@ class Issue < ActiveRecord::Base
   belongs_to :member
   has_many :comments, :as => :commentable, :dependent => :delete_all
   
-  #acts_as_enum :state, [:new, :incomplete, :resolved, :verified]
-  #acts_as_enum :level, [:default, :warn, :fatal]
-  
   before_create :make_public_key
   
   default_scope :order => "updated_at DESC"
-  scope :by_state, lambda { |st| { :conditions => ["state = ?", self.state(st.to_sym)] } }
-  #scope :recently, :conditions => ["state = ?", self.state(:new)]
+  scope :with_state, lambda { |value| where(:state => self.state_value(value)) }
+  
+  state_machine :state, :initial => :pending do
+    
+    event :process do
+	    transition [:pending] => :verified
+    end
+    
+    event :fix do
+	    transition [:pending, :verified, :incomplete] => :closed
+    end
+    
+    state :pending,    :value => 0
+    state :verified,   :value => 1
+    state :closed,     :value => 2
+    state :incomplete, :value => 3
+  end
   
   def title
     @title ||= "A #{namespace} occurred in #{controller_name}##{action_name}"
@@ -62,7 +74,16 @@ class Issue < ActiveRecord::Base
     [ namespace, url, controller_name, action_name ].compact
   end
   
-  private
+  def self.state(name)
+	  state_machine.states.detect { |state| state.name == name }
+	end
+	
+	def self.state_value(name)
+	  object = self.state(name)
+	  object.nil? ? nil : object.value
+	end
+  
+  protected
     
     def parse_env(value)
       return {} if value.blank?
